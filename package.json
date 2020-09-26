@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev:contract": "NODE_ENV=development nodemon --watch assembly -e ts --exec asp",
-    "build:contract": "asb",
-    "deploy:contract": "NODE_ENV=development npm run build:contract && near dev-deploy"
+    "build:contract": "npx asb",
+    "deploy:dev": "NODE_ENV=development npm run build:contract && near dev-deploy"
   },
   "dependencies": {
-    "@textile/hub": "^0.7.1",
-    "near-api-js": "^0.29.0"
+    "@textile/hub": "^1.0.0",
+    "dotenv": "^8.2.0",
+    "isomorphic-ws": "^4.0.1",
+    "near-api-js": "^0.29.1",
+    "ws": "^7.3.1"
   },
   "devDependencies": {
     "near-sdk-as": "^1.0.1",

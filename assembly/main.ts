@@ -1,20 +1,7 @@
-import { PersistentMap, PersistentVector } from 'near-sdk-as'
+import { PersistentMap } from 'near-sdk-as'
+import { _getEvent, _getEventHeight, Event, pushEvent } from './event'
 
-const events = new PersistentVector<Event>('events')
 const mappedPerson = new PersistentMap<string, Person>('m::person')
-
-@nearBindgen
-class Event {
-	collection: string
-	action: string
-	params: string[]
-
-	constructor(collection: string, action: string, params: string[]) {
-		this.collection = collection
-		this.action = action
-		this.params = params
-	}
-}
 
 @nearBindgen
 class Person {
@@ -27,41 +14,46 @@ class Person {
 	}
 }
 
-export function getEvent(index: number): Event {
-	return events[index]
+export function getEvent(index: i32): Event {
+	return _getEvent(index)
 }
 
-export function getEventHeight(): number {
-	return events.length
+export function getEventHeight(): i32 {
+	return _getEventHeight()
 }
 
-export function addPerson(name: string, bio: string) {
-	const person = new Person(name, bio)
-	mappedPerson.set(person.name, person)
+export function addPerson(name: string, bio: string): Person {
+	const person = mappedPerson.get(name)
 
-	const event = new Event('person', 'create', [person.name, person.bio])
-	events.push(event)
+	assert(!person, 'Person name already exist')
+	const newPerson = new Person(name, bio)
+	mappedPerson.set(newPerson.name, newPerson)
+
+	pushEvent('person', 'create', [newPerson.name, newPerson.bio])
+
+	return newPerson
 }
 
-export function updatePerson(name: string, bio: string) {
+export function updatePerson(name: string, bio: string): Person | null {
 	const person = mappedPerson.get(name)
 
 	if (person) {
 		const updatedPerson = new Person(name, bio)
 		mappedPerson.set(person.name, updatedPerson)
 
-		const event = new Event('person', 'update', [updatedPerson.name, updatedPerson.bio])
-		events.push(event)
+		pushEvent('person', 'update', [updatedPerson.name, updatedPerson.bio])
+
+		return updatedPerson
 	}
+	return null
 }
 
-export function deletePerson(name: string) {
+export function deletePerson(name: string): void {
 	const person = mappedPerson.get(name)
 
 	if (person) {
 		mappedPerson.delete(person.name)
 
-		const event = new Event('person', 'delete', [person.name])
-		events.push(event)
+		pushEvent('person', 'delete', [person.name])
 	}
 }
