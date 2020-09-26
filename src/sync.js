@@ -48,6 +48,7 @@ const main = async (ctx, textileClient, config) => {
 		nodeUrl: config.nodeUrl,
 		contractName: config.contractName,
 	}
+	console.log(`connecting to NEAR blockchain...`)
 	const near = await nearAPI.connect({
 		deps: {
 			keyStore: new UnencryptedFileSystemKeyStore(credentialsPath),
@@ -55,6 +56,7 @@ const main = async (ctx, textileClient, config) => {
 		...nearConfig,
 	})
 	const account = await near.account(config.contractName)
+	console.log(`connected!`)
 	fetchEvent(ctx, account, textileClient, config)
 }
 

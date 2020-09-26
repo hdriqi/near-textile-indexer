@@ -1,13 +1,7 @@
-global.WebSocket = require('isomorphic-ws')
-
-const dotenv = require('dotenv')
 const fs = require('fs')
 const path = require('path')
 const Textile = require('./textile')
-
 const sync = require('./sync')
-
-dotenv.config()
 
 const getSetup = async (setupPath) => {
 	try {
@@ -46,6 +40,7 @@ const main = async (config) => {
 
 		if (!setup) {
 			// generate setup.json
+			console.log(`creating initial setup.json`)
 			const dbName = `${config.contractName}-${new Date().getTime()}`
 			const threadID = await textile.client.newDB(undefined, dbName)
 			const setupData = {
@@ -53,13 +48,17 @@ const main = async (config) => {
 				eventHeight: 0,
 			}
 			fs.writeFileSync(setupPath, JSON.stringify(setupData))
+			console.log(`setup.json done`)
 			setup = setupData
 		}
+		console.log(`found setup.json`)
 		ctx.setup = setup
 		ctx.threadID = await textile.parseThreadID(setup.threadID)
 		ctx.setupPath = setupPath
 
+		console.log(`setting up collections`)
 		for (const collection of config.collections) {
+			console.log(`${collection.name}`)
 			try {
 				await textile.client.getCollectionInfo(ctx.threadID, collection.name)
 				await textile.client.updateCollection(ctx.threadID, collection)
@@ -67,12 +66,12 @@ const main = async (config) => {
 				if (err.message === 'collection not found') {
 					console.log(collection)
 					await textile.client.newCollection(ctx.threadID, collection)
-				}
-				else {
+				} else {
 					console.log(err)
 				}
 			}
 		}
+		console.log(`done setting up collections`)
 
 		sync(ctx, textile.client, config)
 	} catch (err) {

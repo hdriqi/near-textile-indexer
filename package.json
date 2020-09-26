@@ -1,12 +1,11 @@
 {
-  "name": "near-contract-template",
+  "name": "near-textile-indexer",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
+  "module": "src/index.js",
   "scripts": {
-    "dev:contract": "NODE_ENV=development nodemon --watch assembly -e ts --exec asp",
-    "build:contract": "npx asb",
-    "deploy:dev": "NODE_ENV=development npm run build:contract && near dev-deploy"
+    "dev": "NODE_ENV=development nodemon --watch js src/index.js"
   },
   "dependencies": {
     "@textile/hub": "^1.0.0",
@@ -16,8 +15,6 @@
     "ws": "^7.3.1"
   },
   "devDependencies": {
-    "near-sdk-as": "^1.0.1",
-    "near-shell": "^0.24.9",
     "nodemon": "^2.0.4"
   },
   "author": "Rahmat Albariqi",
