@@ -9,10 +9,6 @@ const sync = require('./sync')
 
 dotenv.config()
 
-const keyInfo = {
-	key: 'bxlflunozpu2t56cuny4tptz3xm',
-}
-
 const getSetup = async (setupPath) => {
 	try {
 		const setupJSON = fs.readFileSync(setupPath)
@@ -46,7 +42,7 @@ const main = async (config) => {
 		let setup = await getSetup(setupPath)
 
 		const textile = new Textile()
-		await textile.init(keyInfo)
+		await textile.init(config.keyInfo)
 
 		if (!setup) {
 			// generate setup.json

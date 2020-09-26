@@ -8,6 +8,9 @@ const config = {
 	networkId: process.env.NETWORK_ID,
 	nodeUrl: process.env.NODE_URL,
 	contractName: process.env.CONTRACT_NAME,
+	keyInfo: {
+		key: process.env.TEXTILE_API_KEY,
+	},
 	collections: [
 		{
 			name: 'person',
