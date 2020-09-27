@@ -1,7 +1,7 @@
 {
   "name": "near-textile-indexer",
   "version": "1.0.0",
-  "description": "",
+  "description": "NEAR indexer using textile as storage and query engine",
   "main": "src/index.js",
   "module": "src/index.js",
   "scripts": {
