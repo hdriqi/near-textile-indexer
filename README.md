@@ -22,7 +22,7 @@ Unlike Ethereum, NEAR does not have built-in Event. This indexer requires your s
 
 ### Smart Contract
 
-You can find the smart contract on code on [example here]().
+You can find the smart contract on code on [example here](https://github.com/hdriqi/near-textile-indexer-example).
 
 You must create a `PersistentVector` that holds all the `Event` on smart contract with `getEvent` and `getEventHeight` public methods for querying the event.
 
