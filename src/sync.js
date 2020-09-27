@@ -9,7 +9,7 @@ const credentialsPath = path.join(homedir(), CREDENTIALS_DIR)
 
 const processEvent = async (ctx, newEvent, textileClient, config) => {
 	console.log('processing event')
-	config.processEvent(ctx, newEvent, textileClient, config)
+	await config.processEvent(ctx, newEvent, textileClient, config)
 }
 
 const fetchEvent = async (ctx, account, textileClient, config) => {
@@ -30,6 +30,7 @@ const fetchEvent = async (ctx, account, textileClient, config) => {
 		)
 		try {
 			await processEvent(ctx, newEvent, textileClient, config)
+			console.log(`successfully processing event ${curEventHeight}`)
 			ctx.setup.eventHeight += 1
 			writeFileSync(ctx.setupPath, JSON.stringify(ctx.setup))
 		} catch (err) {

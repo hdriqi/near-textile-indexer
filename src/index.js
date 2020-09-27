@@ -36,7 +36,7 @@ const main = async (config) => {
 		let setup = await getSetup(setupPath)
 
 		const textile = new Textile()
-		await textile.init(config.keyInfo)
+		await textile.init(config.keyInfo, config.privateKey)
 
 		if (!setup) {
 			// generate setup.json

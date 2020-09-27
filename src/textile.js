@@ -1,3 +1,4 @@
+const { PrivateKey } = require('@textile/hub')
 const { Client, ThreadID } = require('../textile')
 
 class Textile {
@@ -5,8 +6,11 @@ class Textile {
 		this.client = null
 	}
 
-	async init(keyInfo) {
+	async init(keyInfo, privateKey) {
 		this.client = await Client.withKeyInfo(keyInfo)
+		const identity = PrivateKey.fromString(privateKey)
+		await this.client.getToken(identity)
+		console.log(`authenticate as ${identity.public.toString()}`)
 	}
 
 	async createDB(dbName) {
