@@ -21,7 +21,11 @@ Read the implementation via [example](https://github.com/hdriqi/near-textile-ind
 
 or
 
-[Watch the example demo](https://www.loom.com/share/4d2382fa6e634569b51e467ede03d69e)
+Watch the demo & tutorial
+
+[<img src="https://siasky.net/_AZaw2XKfS9k9o9upbPFUhtPToexcAFdyVTn2oafSab0tg">](
+https://www.loom.com/share/4d2382fa6e634569b51e467ede03d69e
+)
 
 ## Installation
 
