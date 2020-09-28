@@ -23,7 +23,7 @@ or
 
 Watch the demo & tutorial
 
-[<img src="https://siasky.net/_AZaw2XKfS9k9o9upbPFUhtPToexcAFdyVTn2oafSab0tg">](
+[<img src="https://i.ibb.co/zm5BNVs/5f71561edd3b4near-textile-demo.png">](
 https://www.loom.com/share/4d2382fa6e634569b51e467ede03d69e
 )
 
