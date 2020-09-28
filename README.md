@@ -19,6 +19,10 @@ This repo is the proof of concept for NEAR indexing layer using decentralized da
 
 Read the implementation via [example](https://github.com/hdriqi/near-textile-indexer-example).
 
+or
+
+[Watch the example demo](https://www.loom.com/share/4d2382fa6e634569b51e467ede03d69e)
+
 ## Installation
 
 `npm install near-textile-indexer`
