@@ -6,7 +6,18 @@ Event indexer for smart contract on [NEAR](https://near.org) using [Textile](htt
 
 Doing intensive computation (sorting, etc) for get request is not possible on blockchain due to it's nature for decentralization.
 
-One solution is to create an indexing layer that are decentralized. Textile provide the tools to create a decentralized database via its ThreadDB to help scale the get method for NEAR smart contract.
+Developers at NEAR create their own indexer (Flux Protocol, Mintbase, Paras). 
+They need to setup a centralized database for the indexing layer. 
+
+What if we also have a decentralized database for the indexing layer? 
+This is where Textile's ThreadDB shine. A decentralized indexing layer.
+
+Ethereum developers has Graph Protocol and they expect NEAR to have something similar. 
+This repo is the proof of concept for NEAR indexing layer using decentralized database by Textile.
+
+## TL;DR
+
+Read the implementation via [example](https://github.com/hdriqi/near-textile-indexer-example).
 
 ## Installation
 
